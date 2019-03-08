@@ -159,9 +159,12 @@
   		xhr.open('get', 'https://v1.hitokoto.cn/?charset=utf-8&encode=text');
   		xhr.onreadystatechange = function () {
     		if (xhr.readyState === 4) {
-	      		var data = xhr.responseText;
-	      		var h2 = document.getElementsByTagName('h2')[0];
-	      		h2.innerText = data;
+                var h2 = document.getElementsByTagName('h2')[0];
+                if (xhr.status === 200) {
+                    h2.innerText = xhr.responseText;
+                } else {
+                    h2.innerText = 'Hello World!';
+                }
     		}
   		}
   		xhr.send();
